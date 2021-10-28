@@ -37,14 +37,13 @@ public class AppTest
 //	}
 	
 	@Test
-	public boolean shouldBeOrdered() {
+	public void shouldBeOrdered() {
 		System.out.println("test ordinato");
-		
-		
+		list.stampa(list);
+		list.sort(list.getList(), 0);
+		list.stampa(list);
+		for(int i = 1; i < list.getList().size(); ++i)
+			assert list.getList().get(i-1) < list.getList().get(i);		
 	}
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
+    
 }

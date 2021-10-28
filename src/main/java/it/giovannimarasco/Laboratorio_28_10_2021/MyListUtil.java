@@ -20,27 +20,35 @@ public class MyListUtil {
 	public List<Integer> sort(List<Integer> list, int order){
 		switch (order) {
 		case 0:
-			for(int k=1; k<list.size()-1; k++)   {  
-		        int temp = list.get(k);  
-		        int j= k-1;  
-		        while(j>=0 && temp <= list.get(j))   {  
-		            list.set(j+1, list.get(j));   
-		            j = j-1;  
-		        }  
-		        list.set(j+1, temp);  
-		    }  
+			int n = list.size();
+			int temp = 0;
+			 for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(list.get(j-1) > list.get(j)){  
+                                 //swap elements  
+                                 temp = list.get(j-1);  
+                                 list.set(j-1, list.get(j));  
+                                 list.set(j, temp);  
+                         }  
+                          
+                 }  
+         }  
 		
 			break;
 		case 1:
-			for(int k=1; k<list.size()-1; k++)   {  
-		        int temp = list.get(k);  
-		        int j= k-1;  
-		        while(j<0 && temp >= list.get(j))   {  
-		            list.set(j+1, list.get(j));   
-		            j = j-1;  
-		        }  
-		        list.set(j+1, temp);  
-		    }  
+			int n1 = list.size();
+			int temp1 = 0;
+			 for(int i=0; i < n1; i++){  
+                 for(int j=1; j < (n1-i); j++){  
+                          if(list.get(j-1) < list.get(j)){  
+                                 //swap elements  
+                                 temp1 = list.get(j-1);  
+                                 list.set(j-1, list.get(j));  
+                                 list.set(j, temp1);  
+                         }  
+                          
+                 }  
+         }  
 		
 			break;
 
@@ -48,6 +56,11 @@ public class MyListUtil {
 			break;
 		}
 		 return list;
+	}
+	
+	public void stampa(MyListUtil list) {
+		for(int i = 0; i < list.getList().size(); ++i)
+			System.out.println(list.getList().get(i));
 	}
 	
 	public static void main(String[] args) {
