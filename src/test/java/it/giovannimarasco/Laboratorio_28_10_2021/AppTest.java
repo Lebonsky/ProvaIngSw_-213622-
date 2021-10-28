@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,32 +19,37 @@ public class AppTest
      */
 	private static MyListUtil list;
 	@BeforeClass
-	public static void prepareTest() {
+	public static void testInfo() {
 		System.out.println("before class");
+		DateTime time = DateTime.now();
+		System.out.println(time);
+	}
+	@Before
+	public void prepareTest() {
+		System.out.println("before");
 		list = new MyListUtil();
 		Random r = new Random();
-		int lenght = r .nextInt() % 300;
+		int lenght = r .nextInt() % 10;
+		if(lenght < 0 ) lenght *= -1;
+		System.out.println("lenght : " + lenght);
 		for(int i = 0; i < lenght; ++i )
 			list.getList().add(r.nextInt() % 400);
 	}
-//	@Before
-//	public static void prepareTest() {
-//		System.out.println("before class");
-//		list = new MyListUtil();
-//		Random r = new Random();
-//		int lenght = r .nextInt() % 300;
-//		for(int i = 0; i < lenght; ++i )
-//			list.getList().add(r.nextInt() % 400);
-//	}
 	
 	@Test
 	public void shouldBeOrdered() {
 		System.out.println("test ordinato");
 		list.stampa(list);
-		list.sort(list.getList(), 0);
+		int opz = 0;
+		list.sort(list.getList(), opz);
 		list.stampa(list);
 		for(int i = 1; i < list.getList().size(); ++i)
-			assert list.getList().get(i-1) < list.getList().get(i);		
+			assert list.getList().get(i-1) < list.getList().get(i);	
+		opz = 1;
+		list.sort(list.getList(), opz);
+		list.stampa(list);
+		for(int i = 1; i < list.getList().size(); ++i)
+			assert list.getList().get(i-1) > list.getList().get(i);	
 	}
     
 }
